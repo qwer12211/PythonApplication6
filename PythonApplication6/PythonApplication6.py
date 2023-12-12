@@ -1,52 +1,51 @@
-import s
-from модуль1 import Store
-from модуль1 import Client, Administrator
-
+from РєР»Р°СЃСЃ1 import Store
+from РјРѕРґСѓР»СЊ1 import Client, Administrator
+import bcrypt
 store = Store()
 
 while True:
-    print("Чтобы войти, вам необходимо авторизоваться или зарегистрироваться\n")
+    print("Р§С‚РѕР±С‹ РІРѕР№С‚Рё, РІР°Рј РЅРµРѕР±С…РѕРґРёРјРѕ Р°РІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ РёР»Рё Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ\n")
 
-    print("1 - Авторизоваться.")
-    print("2 - Зарегистрироваться.")
-    print("3 - Выйти.")
-    choice = input("Выберите действие.\n")
+    print("1 - РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ.")
+    print("2 - Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ.")
+    print("3 - Р’С‹Р№С‚Рё.")
+    choice = input("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ.\n")
 
     if choice == '1':
-        print("Авторизация\n")
-        print("1 - Авторизоваться как клиент.")
-        print("2 - Авторизоваться как сотрудник.")
-        print("3 - Вернуться назад.")
-        choice_registration = input("Выберите действие.\n")
+        print("РђРІС‚РѕСЂРёР·Р°С†РёСЏ\n")
+        print("1 - РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ РєР°Рє РєР»РёРµРЅС‚.")
+        print("2 - РђРІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ РєР°Рє СЃРѕС‚СЂСѓРґРЅРёРє.")
+        print("3 - Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ.")
+        choice_registration = input("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ.\n")
 
         if choice_registration == '1':
             client = Client(store)
 
             while True:
-                login_client = input("Введите логин.\n")
-                password_client = input("Введите пароль.\n")
+                login_РЎlienta = input("Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ.\n")
+                password_Clienta = input("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ.\n")
 
-                if login_client.strip() and password_client.strip():
+                if login_РЎlienta.strip() and password_Clienta.strip():
                     break
                 else:
-                    print("Поля с логином и паролем не могут быть пустыми. Попробуйте снова.\n")
+                    print("РџРѕР»СЏ СЃ Р»РѕРіРёРЅРѕРј Рё РїР°СЂРѕР»РµРј РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹РјРё. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
 
-            if client.authenticate(login_client, password_client):
-                print("Авторизация выполнена.\n")
+            if client.authenticate(login_РЎlienta, password_Clienta):
+                print("РђРІС‚РѕСЂРёР·Р°С†РёСЏ РІС‹РїРѕР»РЅРµРЅР°.\n")
             else:
                 continue
 
             while True:
-                print("Добро пожаловать в магазин обуви 'Большевичка'\n")
-                print("1 - Товары")
-                print("2 - Корзина")
-                print("3 - Выйти")
+                print("Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ РјР°РіР°Р·РёРЅ РѕР±СѓРІРё 'Р‘РѕР»СЊС€РµРІРёС‡РєР°'\n")
+                print("1 - РўРѕРІР°СЂС‹")
+                print("2 - РљРѕСЂР·РёРЅР°")
+                print("3 - Р’С‹Р№С‚Рё")
 
-                client_action = input("Выберите действие.\n")
+                client_action = input("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ.\n")
 
                 if client_action == '1':
                     client.display_products()
-                    add_to_cart = input("Введите номер товара для добавления в корзину или 'add' для возвращения назад.\n")
+                    add_to_cart = input("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ С‚РѕРІР°СЂР° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РІ РєРѕСЂР·РёРЅСѓ РёР»Рё 'add' РґР»СЏ РІРѕР·РІСЂР°С‰РµРЅРёСЏ РЅР°Р·Р°Рґ.\n")
 
                     if add_to_cart == 'add':
                         continue
@@ -55,23 +54,23 @@ while True:
                         products = client.display_products()
                         if 1 <= product_id <= len(products):
                             client.add_to_cart(product_id)
-                            print(f"Товар '{products[product_id - 1][1]}' добавлен в корзину.\n")
+                            print(f"РўРѕРІР°СЂ '{products[product_id - 1][1]}' РґРѕР±Р°РІР»РµРЅ РІ РєРѕСЂР·РёРЅСѓ.\n")
                         else:
-                            print("Неверный номер товара. Попробуйте снова.\n")
+                            print("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ С‚РѕРІР°СЂР°. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
                     except ValueError:
-                        print("Неверный ввод. Попробуёте снова.\n")
+                        print("РќРµРІРµСЂРЅС‹Р№ РІРІРѕРґ. РџРѕРїСЂРѕР±СѓС‘С‚Рµ СЃРЅРѕРІР°.\n")
 
                 elif client_action == '2':
                     client.display_cart()
 
-                    print("1 - Оформить заказ.\n")
-                    print("2 - Вернуться назад")
-                    cart_choice = input("Выберите действие.\n")
+                    print("1 - РћС„РѕСЂРјРёС‚СЊ Р·Р°РєР°Р·.\n")
+                    print("2 - Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ")
+                    cart_choice = input("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ.\n")
 
                     if cart_choice == '1':
-                        print("Оформление заказа\n")
+                        print("РћС„РѕСЂРјР»РµРЅРёРµ Р·Р°РєР°Р·Р°\n")
 
-                        address = input("Введите адрес доставки.\n")
+                        address = input("Р’РІРµРґРёС‚Рµ Р°РґСЂРµСЃ РґРѕСЃС‚Р°РІРєРё.\n")
                         client.checkout(address)
                         break
 
@@ -79,118 +78,117 @@ while True:
                         continue
 
                 elif client_action == '3':
-                    print("Ждём вас снова\n")
+                    print("Р–РґС‘Рј РІР°СЃ СЃРЅРѕРІР°\n")
                     break
 
         elif choice_registration == '2':
             administrator = Administrator(store)
 
             while True:
-                administrator_login = input("Введите логин.\n")
-                administrator_password = input("Введите пароль.")
+                administrator_login = input("Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ.\n")
+                administrator_password = input("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ.")
 
                 if administrator_login.strip() and administrator_password.strip():
                     break
                 else:
-                    print("Поле логина и пароля не могут быть пустыми. Попробуйте снова.\n")
+                    print("РџРѕР»Рµ Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹РјРё. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
 
             if administrator.authenticate(administrator_login, administrator_password):
-                print("Авторизация выполнена успешно\n")
+                print("РђРІС‚РѕСЂРёР·Р°С†РёСЏ РІС‹РїРѕР»РЅРµРЅР° СѓСЃРїРµС€РЅРѕ\n")
 
                 while True:
-                    print("add - Добавить товар")
-                    print("2 - Удалить товар")
-                    print("3 - Изменить название товара")
-                    print("4 - Выйти")
+                    print("add - Р”РѕР±Р°РІРёС‚СЊ С‚РѕРІР°СЂ")
+                    print("2 - РЈРґР°Р»РёС‚СЊ С‚РѕРІР°СЂ")
+                    print("3 - РР·РјРµРЅРёС‚СЊ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°")
+                    print("4 - Р’С‹Р№С‚Рё")
 
-                    administrator_action = input("Выберите действие.\n")
+                    administrator_action = input("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ.\n")
 
                     if administrator_action == 'add':
-                        print("Добавления товара.\n")
+                        print("Р”РѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР°.\n")
                         while True:
-                            product_name = input("Введите название товара.\n ")
-                            product_price = input("Введите цену товара.")
+                            product_name = input("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°.\n ")
+                            product_price = input("Р’РІРµРґРёС‚Рµ С†РµРЅСѓ С‚РѕРІР°СЂР°.")
                             try:
                                 product_price = float(product_price)
                                 if product_name.strip() and product_price >= 0:
                                     administrator.add_product(product_name, product_price)
-                                    print(f"Товар '{product_name}' успешно добавлен.\n")
+                                    print(f"РўРѕРІР°СЂ '{product_name}' СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ.\n")
                                     break
                                 else:
-                                    print("Поле название товара не может быть пустым, а поле цена не должно быть отрицательным.\n")
+                                    print("РџРѕР»Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј, Р° РїРѕР»Рµ С†РµРЅР° РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј.\n")
                             except ValueError:
-                                print("Неверный формат цены. Попробуйте снова.\n")
+                                print("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ С†РµРЅС‹. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
 
                     elif administrator_action == '2':
-                        print("Процесс удаления товара.\n")
+                        print("РџСЂРѕС†РµСЃСЃ СѓРґР°Р»РµРЅРёСЏ С‚РѕРІР°СЂР°.\n")
                         while True:
-                            product_name_to_delete = input("Введите название товара для удаления или 'back' для возвращения назад\n ")
+                            product_name_to_delete = input("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РёР»Рё 'back' РґР»СЏ РІРѕР·РІСЂР°С‰РµРЅРёСЏ РЅР°Р·Р°Рґ\n ")
 
                             if product_name_to_delete == 'back':
                                 break
 
                             administrator.remove_product(product_name_to_delete)
-                            print(f"Товар '{product_name_to_delete}' товар удален.\n")
+                            print(f"РўРѕРІР°СЂ '{product_name_to_delete}' С‚РѕРІР°СЂ СѓРґР°Р»РµРЅ.\n")
                             break
 
                     elif administrator_action == '3':
-                        print("Процесс изменения названия товара.\n")
+                        print("РџСЂРѕС†РµСЃСЃ РёР·РјРµРЅРµРЅРёСЏ РЅР°Р·РІР°РЅРёСЏ С‚РѕРІР°СЂР°.\n")
                         while True:
-                            product_name_to_change = input("Введите название товара для изменения или 'back' для возвращения назад\n")
+                            product_name_to_change = input("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ РёР»Рё 'back' РґР»СЏ РІРѕР·РІСЂР°С‰РµРЅРёСЏ РЅР°Р·Р°Рґ\n")
 
                             if product_name_to_change == 'back':
                                 break
 
-                            new_product_name = input("Введите новое название товара: ")
+                            new_product_name = input("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°: ")
                             administrator.change_product_name(product_name_to_change, new_product_name)
-                            print(f"Название товара  изменено на '{new_product_name}'.\n")
+                            print(f"РќР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°  РёР·РјРµРЅРµРЅРѕ РЅР° '{new_product_name}'.\n")
                             break
 
                     elif administrator_action == '4':
-                        print("Вы  вышли.\n")
+                        print("Р’С‹  РІС‹С€Р»Рё.\n")
                         break
             else:
-                print("Неправильный логин или пароль. Попробуйте снова.\n")
+                print("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
 
     elif choice == '2':
-        print("Регистрация\n")
-        print("Логин должен быть не менее 4 символов\n")
+        print("Р РµРіРёСЃС‚СЂР°С†РёСЏ\n")
+        print("Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 4 СЃРёРјРІРѕР»РѕРІ\n")
 
         while True:
-            login_client = input("Придумайте логин.\n")
+            login_РЎlienta = input("РџСЂРёРґСѓРјР°Р№С‚Рµ Р»РѕРіРёРЅ.\n")
 
-            if len(login_client) >= 4:
+            if len(login_РЎlienta) >= 4:
                 break
             else:
-                print("Логин должен содержать не менее 4 символов и не должен быть пустым. Попробуйте снова.\n")
+                print("Р›РѕРіРёРЅ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµ РјРµРЅРµРµ 4 СЃРёРјРІРѕР»РѕРІ Рё РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
 
         while True:
-            password_client = input("Создайте пароль.")
+            password_Clienta = input("РЎРѕР·РґР°Р№С‚Рµ РїР°СЂРѕР»СЊ.")
 
-            if len(password_client) > 0:
+            if len(password_Clienta) > 0:
                 break
             else:
-                print("Поле 'пароль' не может быть пустым.\n")
+                print("РџРѕР»Рµ 'РїР°СЂРѕР»СЊ' РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј.\n")
 
-        store.cursor.execute('SELECT * FROM users WHERE login = ?', (login_client,))
-        existing_user = store.cursor.fetchone()
+        store.cursor.execute('SELECT * FROM users WHERE login = ?', (login_РЎlienta,))
+        sush_user = store.cursor.fetchone()
 
-        if existing_user:
-            print("Пользователь с таким логином уже существует. Придумайте другой логин.\n")
+        if sush_user:
+            print("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј Р»РѕРіРёРЅРѕРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РџСЂРёРґСѓРјР°Р№С‚Рµ РґСЂСѓРіРѕР№ Р»РѕРіРёРЅ.\n")
         else:
 
-            hashed_password = bcrypt.hashpw(password_client.encode('utf-8'), bcrypt.gensalt())
+            hashed_password = bcrypt.hashpw(password_Clienta.encode('utf-8'), bcrypt.gensalt())
 
-            store.cursor.execute('INSERT INTO users (login, password) VALUES (?, ?)', (login_client, hashed_password))
+            store.cursor.execute('INSERT INTO users (login, password) VALUES (?, ?)', (login_РЎlienta, hashed_password))
 
             store.conn.commit()
 
-            print("Регистрация выполнена.\n")
+            print("Р РµРіРёСЃС‚СЂР°С†РёСЏ РІС‹РїРѕР»РЅРµРЅР°.\n")
     elif choice == '3':
-        print("Вы  вышли.\n")
+        print("Р’С‹  РІС‹С€Р»Рё.\n")
         break
 
     else:
-        print("Неправильный ввод. Попробуйте снова.\n")
-
-store.close_connection()
+        print("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РІРІРѕРґ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n")
+store.close()
