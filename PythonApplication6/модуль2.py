@@ -6,14 +6,14 @@ class User:
         self.store = store
         self.authenticated_user = None
 
-    def validate_credentials(self, login, password):
+    def validate(self, login, password):
         if not login.strip() or not password.strip():
             print("Поле логинв и пароля не могут быть пустыми. Попробуйте снова.\n")
             return False
         return True
 
     def authenticate(self, login, password):
-        if not self.validate_credentials(login, password):
+        if not self.validate(login, password):
             return False
 
         self.store.cursor.execute('SELECT * FROM users WHERE login = ?', (login,))
@@ -34,7 +34,7 @@ class User:
             print(f"{product[0]}. {product[1]} - ${product[2]}")
         return products
 
-    def add_to_cart(self, product_id):
+    def add_to_basket(self, product_id):
         self.store.cursor.execute('INSERT INTO basket (user_id, product_id) VALUES (?, ?)',
                                   (self.authenticated_user[0], product_id))
         self.store.conn.commit()
@@ -56,7 +56,7 @@ class Client(User):
                 "Неверный ввод.\n")
             return False
 
-    def add_to_cart(self, product_id):
+    def add_to_basket(self, product_id):
         products = self.display_products()
         if not self.validate_product_id(product_id, products):
             return
@@ -65,19 +65,19 @@ class Client(User):
                                   (self.authenticated_user[0], product_id))
         self.store.conn.commit()
 
-    def display_cart(self):
+    def display_basket(self):
         self.store.cursor.execute('''
             SELECT products.name, products.price
             FROM basket
             JOIN products ON basket.product_id = products.id
             WHERE basket.user_id = ?
         ''', (self.authenticated_user[0],))
-        cart_items = self.store.cursor.fetchall()
+        basket_items = self.store.cursor.fetchall()
 
-        if cart_items:
-            total_sum = sum(item[1] for item in cart_items)
+        if basket_items:
+            total_sum = sum(item[1] for item in basket_items)
             print("Товары в вашей корзине.\n")
-            for item in cart_items:
+            for item in basket_items:
                 print(f"{item[0]} - ${item[1]}")
             print(f"Итого: ${total_sum}")
         else:
