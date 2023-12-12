@@ -6,6 +6,18 @@ class Store:
         self.cursor = self.conn.cursor()
         self.create_tables()
 
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS orders (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                summ REAL,
+                order_number INTEGER,
+                FOREIGN KEY(user_id) REFERENCES users(id)
+            )
+        ''')
+        self.conn.commit()
+    
+
     def create_tables(self):
         self.cursor.execute('''
             CREATE TABLE IF NOT EXISTS users (
@@ -49,18 +61,6 @@ class Store:
                 shoe_id INTEGER,
                 FOREIGN KEY(user_id) REFERENCES users(id),
                 FOREIGN KEY(shoe_id) REFERENCES shoes(id)
-            )
-        ''')
-        self.conn.commit()
-
-        self.cursor.execute('''
-            CREATE TABLE IF NOT EXISTS orders (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER,
-                address TEXT,
-                amount REAL,
-                order_number INTEGER,
-                FOREIGN KEY(user_id) REFERENCES users(id)
             )
         ''')
         self.conn.commit()
