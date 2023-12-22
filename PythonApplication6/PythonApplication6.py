@@ -22,15 +22,15 @@ while True:
             client = Client(store)
 
             while True:
-                login_Сlienta = input("Введите логин.\n")
+                login_clienta = input("Введите логин.\n")
                 password_Clienta = input("Введите пароль.\n")
 
-                if login_Сlienta.strip() and password_Clienta.strip():
+                if login_clienta.strip() and password_Clienta.strip():
                     break
                 else:
                     print("Поля с логином и паролем не могут быть пустыми. Попробуйте снова.\n")
 
-            if client.authenticate(login_Сlienta, password_Clienta):
+            if client.authenticate(login_clienta, password_Clienta):
                 print("Авторизация выполнена.\n")
             else:
                 continue
