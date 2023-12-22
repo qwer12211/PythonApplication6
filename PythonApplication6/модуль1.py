@@ -11,7 +11,6 @@ class Store:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER,
                 summ REAL,
-                order_number INTEGER,
                 FOREIGN KEY(user_id) REFERENCES users(id)
             )
         ''')
