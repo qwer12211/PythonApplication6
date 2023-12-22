@@ -4,7 +4,7 @@ import bcrypt
 class User:
     def __init__(self, store):
         self.store = store
-        self.authenticated_user = None
+        self.auth_user = None
 
     def validate(self, login, password):
         if not login.strip() or not password.strip():
@@ -20,7 +20,7 @@ class User:
         sush_user = self.store.cursor.fetchone()
 
         if sush_user and bcrypt.checkpw(password.encode('utf-8'), sush_user[2]):
-            self.authenticated_user = sush_user
+            self.auth_user = sush_user
             return True
         else:
             print("Неправильный логин или пароль.\n")
@@ -36,7 +36,7 @@ class User:
 
     def add_to_basket(self, product_id):
         self.store.cursor.execute('INSERT INTO basket (user_id, product_id) VALUES (?, ?)',
-                                  (self.authenticated_user[0], product_id))
+                                  (self.auth_user[0], product_id))
         self.store.conn.commit()
 
 class Client(User):
