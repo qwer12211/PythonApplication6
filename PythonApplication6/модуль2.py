@@ -93,19 +93,16 @@ class Client(User):
         prices = self.store.cursor.fetchall()
         total_sum = sum(price[0] for price in prices)
 
-        order_number = random.randint(1000, 9999)
-
         self.store.cursor.execute('''
-            INSERT INTO orders (user_id, summ, order_number)
+            INSERT INTO orders (user_id, summ)
             VALUES (?, ?, ?, ?)
-        ''', (self.authenticated_user[0], total_sum, order_number))
+        ''', (self.authenticated_user[0], total_sum))
         self.store.conn.commit()
 
         self.store.cursor.execute('DELETE FROM basket WHERE user_id = ?', (self.authenticated_user[0],))
         self.store.conn.commit()
 
         print("Заказ оформлен\n")
-        print(f"Ваш номер заказа №{order_number}")
         print(f"Итого: ${total_sum}")
 
 class Administrator(User):
